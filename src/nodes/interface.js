@@ -560,7 +560,7 @@
     function WidgetProgress() {
         this.size = [160, 26];
         this.addInput("", "number");
-        this.properties = { min: 0, max: 1, value: 0, color: "#AAF" };
+        this.properties = { min: 0, max: 1, value: 0.5, color: "#AAF" };
     }
 
     WidgetProgress.title = "Progress";

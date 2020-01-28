@@ -19,7 +19,9 @@ var select = elem.querySelector("select");
 select.addEventListener("change", function(e){
 	var option = this.options[this.selectedIndex];
 	var url = option.dataset["url"];
-	
+
+	console.log(url)
+
 	if(url)
 		graph.load( url );
 	else if(option.callback)
@@ -51,7 +53,7 @@ elem.querySelector("#download").addEventListener("click",function(){
 	document.body.appendChild(element);
 	element.click();
 	document.body.removeChild(element);
-	setTimeout( function(){ URL.revokeObjectURL( url ); }, 1000*60 ); //wait one minute to revoke url	
+	setTimeout( function(){ URL.revokeObjectURL( url ); }, 1000*60 ); //wait one minute to revoke url
 });
 
 function addDemo( name, url )
@@ -80,6 +82,3 @@ addDemo("autobackup", function(){
 	var graph_data = JSON.parse(data);
 	graph.configure( graph_data );
 });
-
-
-
