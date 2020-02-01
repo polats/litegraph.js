@@ -40,7 +40,7 @@
         "no-console": "off",
         "no-empty": "warn",
         "no-redeclare": "warn",
-        "no-inner-declarations": "warn",
+        "no-inner-declarations": "off",
         "no-constant-condition": "warn",
         "no-unused-vars": "warn",
         "no-mixed-spaces-and-tabs": "warn",

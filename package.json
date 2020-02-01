@@ -10,9 +10,9 @@
   "private": false,
   "scripts": {
     "prebuild": "rimraf build",
-    "build": "grunt build",
-    "js-start": "nodemon utils/server.js",
-    "start": "react-scripts --max_old_space_size=8192 start",
+    "build": "grunt build -force",
+    "start": "nodemon utils/server.js",
+    "react-start": "react-scripts --max_old_space_size=8192 start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prettier": "npx prettier --write src/**/*.* css/**/*.*",
     "lint": "npx eslint src",

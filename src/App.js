@@ -1,4 +1,7 @@
-import React from 'react';
+import React from 'react'
+import LiteGraphJS from './libs/litegraph.js'
+
+require('./libs/gl-matrix.js')
 
 function App() {
   return(

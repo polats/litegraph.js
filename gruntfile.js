@@ -18,7 +18,7 @@ module.exports = function (grunt) {
     concat: {
       build: {
         src: '<%= projectFiles %>',
-        dest: 'build/litegraph.js'
+        dest: 'src/libs/litegraph.js'
       }
     },
     closureCompiler: {
@@ -35,7 +35,7 @@ module.exports = function (grunt) {
       },
       targetName: {
         src: '<%= projectFiles %>',
-        dest: 'build/litegraph.min.js'
+        dest: 'src/libs/litegraph.min.js'
       }
     }
   })
