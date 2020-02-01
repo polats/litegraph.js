@@ -7,14 +7,32 @@ window.addEventListener("resize", function() { editor.graphcanvas.resize(); } );
 //window.addEventListener("keydown", editor.graphcanvas.processKey.bind(editor.graphcanvas) );
 window.onbeforeunload = function(){
 	var data = JSON.stringify( graph.serialize() );
-	localStorage.setItem("litegraphg demo backup", data );
+	localStorage.setItem("graphdemo_save", data );
 }
 
 //create scene selector
 var elem = document.createElement("span");
 elem.className = "selector";
-elem.innerHTML = "Demo <select><option>Empty</option></select> <button id='save'>Save</button><button id='load'>Load</button><button id='download'>Download</button>";
+elem.innerHTML = "🌲Ecosystem Simulator🌞"; // <button id='download'>Download</button>";
+// <select><option>Empty</option></select> <button id='save'>Save</button><button id='load'>Load</button><button id='download'>Download</button>";
 editor.tools.appendChild(elem);
+
+// elem.querySelector("#download").addEventListener("click",function(){
+// 	var data = JSON.stringify( graph.serialize() );
+// 	var file = new Blob( [ data ] );
+// 	var url = URL.createObjectURL( file );
+// 	var element = document.createElement("a");
+// 	element.setAttribute('href', url);
+// 	element.setAttribute('download', "graph.JSON" );
+// 	element.style.display = 'none';
+// 	document.body.appendChild(element);
+// 	element.click();
+// 	document.body.removeChild(element);
+// 	setTimeout( function(){ URL.revokeObjectURL( url ); }, 1000*60 ); //wait one minute to revoke url
+// });
+
+
+/*
 var select = elem.querySelector("select");
 select.addEventListener("change", function(e){
 	var option = this.options[this.selectedIndex];
@@ -56,6 +74,7 @@ elem.querySelector("#download").addEventListener("click",function(){
 	setTimeout( function(){ URL.revokeObjectURL( url ); }, 1000*60 ); //wait one minute to revoke url
 });
 
+
 function addDemo( name, url )
 {
 	var option = document.createElement("option");
@@ -82,3 +101,29 @@ addDemo("autobackup", function(){
 	var graph_data = JSON.parse(data);
 	graph.configure( graph_data );
 });
+
+*/
+
+// load on start
+var data = localStorage.getItem( "graphdemo_save" );
+if(data)
+{
+	var jsonData = JSON.parse(data);
+
+	if (jsonData.nodes.length === 0)
+	{
+		graph.load( "examples/eco.json" );
+		data = JSON.stringify( graph.serialize() );
+		localStorage.setItem("graphdemo_save", data );
+
+		setTimeout(() => {  window.location = "" }, 1000);
+	}
+	else {
+		graph.configure( jsonData );
+	}
+}
+else {
+	graph.load( "examples/eco.json" );
+}
+
+graph.start();

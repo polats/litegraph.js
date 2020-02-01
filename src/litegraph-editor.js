@@ -31,40 +31,51 @@ function Editor(container_id, options) {
     //add stuff
     //this.addToolsButton("loadsession_button","Load","imgs/icon-load.png", this.onLoadButton.bind(this), ".tools-left" );
     //this.addToolsButton("savesession_button","Save","imgs/icon-save.png", this.onSaveButton.bind(this), ".tools-left" );
-    this.addLoadCounter();
-    this.addToolsButton(
-        "playnode_button",
-        "Play",
-        "imgs/icon-play.png",
-        this.onPlayButton.bind(this),
-        ".tools-right"
-    );
-    this.addToolsButton(
-        "playstepnode_button",
-        "Step",
-        "imgs/icon-playstep.png",
-        this.onPlayStepButton.bind(this),
-        ".tools-right"
-    );
+    // this.addLoadCounter();
 
-    if (!options.skip_livemode) {
-        this.addToolsButton(
-            "livemode_button",
-            "Live",
-            "imgs/icon-record.png",
-            this.onLiveButton.bind(this),
-            ".tools-right"
-        );
-    }
-    if (!options.skip_maximize) {
-        this.addToolsButton(
-            "maximize_button",
-            "",
-            "imgs/icon-maximize.png",
-            this.onFullscreenButton.bind(this),
-            ".tools-right"
-        );
-    }
+    // this.addToolsButton(
+    //     "playnode_button",
+    //     "Play",
+    //     "imgs/icon-play.png",
+    //     this.onPlayButton.bind(this),
+    //     ".tools-right"
+    // );
+    // this.addToolsButton(
+    //     "playstepnode_button",
+    //     "Step",
+    //     "imgs/icon-playstep.png",
+    //     this.onPlayStepButton.bind(this),
+    //     ".tools-right"
+    // );
+    //
+    // if (!options.skip_livemode) {
+    //     this.addToolsButton(
+    //         "livemode_button",
+    //         "Live",
+    //         "imgs/icon-record.png",
+    //         this.onLiveButton.bind(this),
+    //         ".tools-right"
+    //     );
+    // }
+    // if (!options.skip_maximize) {
+    //     this.addToolsButton(
+    //         "maximize_button",
+    //         "",
+    //         "imgs/icon-maximize.png",
+    //         this.onFullscreenButton.bind(this),
+    //         ".tools-right"
+    //     );
+    // }
+      this.addToolsButton(
+          "maximize_button",
+          "Enter VR",
+          "imgs/icon-maximize.png",
+          this.onEnterVRButton.bind(this),
+          ".tools-right"
+      );
+
+
+
     if (options.miniwindow) {
         this.addMiniWindow(300, 200);
     }
@@ -78,6 +89,11 @@ function Editor(container_id, options) {
     graphcanvas.resize();
     //graphcanvas.draw(true,true);
 }
+
+Editor.prototype.onEnterVRButton = function() {
+  window.location = "vr.html";
+};
+
 
 Editor.prototype.addLoadCounter = function() {
     var meter = document.createElement("div");

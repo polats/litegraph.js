@@ -97,8 +97,8 @@
 
       if( this.mouseOver )
       {
-        ctx.fillStyle = "#AAA";
-        ctx.fillText( this.tooltip, 0, this.size[1] + 14 );
+        ctx.font = "14px Arial";
+        ctx.fillText( this.tooltip, 0, this.size[1] + 16 );
       }
     };
 
@@ -282,8 +282,8 @@
 
       if( this.mouseOver )
       {
-        ctx.fillStyle = "#AAA";
-        ctx.fillText( this.tooltip, 0, this.size[1] + 14 );
+        ctx.font = "14px Arial";
+        ctx.fillText( this.tooltip, 0, this.size[1] + 16 );
       }
     };
 
@@ -671,7 +671,8 @@
         if( this.mouseOver )
         {
           ctx.fillStyle = "#AAA";
-          ctx.fillText( this.tooltip, 0, this.size[1] + 14 );
+          ctx.font = "14px Arial";
+          ctx.fillText( this.tooltip, 0, this.size[1] + 16 );
         }
     };
 
@@ -802,7 +803,8 @@
         if( this.mouseOver )
         {
           ctx.fillStyle = "#AAA";
-          ctx.fillText( this.tooltip, 0, this.size[1] + 14 );
+          ctx.font = "14px Arial";
+          ctx.fillText( this.tooltip, 0, this.size[1] + 16 );
         }
     };
 
