@@ -22,7 +22,7 @@
       this.minLife = 0;
       this.maxLife = 1;
       this.life = this.maxLife;
-      this.lifeDec = 0.025;
+      this.lifeDec = 0.05;
 
       this.barColor = "#ff6b6b";
       this.interval = 1000;
@@ -30,6 +30,9 @@
       this.last_interval = 1000;
       this.triggered = false;
       this.tooltip = "🦠 consume other 🦠"
+      this.dying = false;
+      this.dyingCountdown = 0;
+      this.ticksToDie = 2;
 
     }
 
@@ -61,7 +64,7 @@
         ctx.font = (h * 0.7).toFixed(1) + "px Arial";
         ctx.fillStyle = "#EEE";
         ctx.fillText(
-            this.emoji,
+            this.dying ?  "💀" : this.emoji,
             x,
             h * 0.75
         );
@@ -106,6 +109,18 @@
         this.time = this.time % this.last_interval;
 
         this.life -= this.lifeDec;
+        if (this.life < this.minLife) {
+          if (!this.dying)
+          {
+            this.dying = true;
+            this.dyingCountdown = this.ticksToDie;
+          }
+          else {
+            this.dyingCountdown -= 1;
+            if (this.dyingCountdown <= 0)
+              this.graph.remove(this);
+          }
+        }
 
         this.trigger(this.emoji, this.properties.event);
         if (this.inputs && this.inputs.length > 1 && this.inputs[1]) {
