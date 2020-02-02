@@ -733,7 +733,7 @@
      * Run N steps (cycles) of the graph
      * @method runStep
      * @param {number} num number of steps to run, default is 1
-     * @param {Boolean} do_not_catch_errors [optional] if you want to try/catch errors 
+     * @param {Boolean} do_not_catch_errors [optional] if you want to try/catch errors
      * @param {number} limit max number of nodes to execute (used to execute from start to a node)
      */
 
@@ -2036,7 +2036,7 @@
 		+ resizable: if set to false it wont be resizable with the mouse
 		+ horizontal: slots are distributed horizontally
 		+ widgets_start_y: widgets start at y distance from the top of the node
-	
+
 	flags object:
 		+ collapsed: if it is collapsed
 
@@ -3137,7 +3137,7 @@
      * @param {String} name the text to show on the widget
      * @param {String} value the default value
      * @param {Function} callback function to call when it changes (optionally, it can be the name of the property to modify)
-     * @param {Object} options the object that contains special properties of this widget 
+     * @param {Object} options the object that contains special properties of this widget
      * @return {Object} the created widget object
      */
     LGraphNode.prototype.addWidget = function( type, name, value, callback, options )
@@ -4371,7 +4371,7 @@ LGraphNode.prototype.executeAction = function(action)
 		this.read_only = false; //if set to true users cannot modify the graph
         this.render_only_selected = true;
         this.live_mode = false;
-        this.show_info = true;
+        this.show_info = false;
         this.allow_dragcanvas = true;
         this.allow_dragnodes = true;
         this.allow_interaction = true; //allow to control widgets, buttons, collapse, etc
@@ -5117,7 +5117,7 @@ LGraphNode.prototype.executeAction = function(action)
             } //clicked outside of nodes
             else {
                 //search for link connector
-				if(!this.read_only) 
+				if(!this.read_only)
 					for (var i = 0; i < this.visible_links.length; ++i) {
 						var link = this.visible_links[i];
 						var center = link._pos;
@@ -6199,7 +6199,7 @@ LGraphNode.prototype.executeAction = function(action)
         for (var i in this.selected_nodes) {
             var node = this.selected_nodes[i];
 			//autoconnect when possible (very basic, only takes into account first input-output)
-			if(node.inputs && node.inputs.length && node.outputs && node.outputs.length && LiteGraph.isValidConnection( node.inputs[0].type, node.outputs[0].type ) && node.inputs[0].link && node.outputs[0].links && node.outputs[0].links.length ) 
+			if(node.inputs && node.inputs.length && node.outputs && node.outputs.length && LiteGraph.isValidConnection( node.inputs[0].type, node.outputs[0].type ) && node.inputs[0].link && node.outputs[0].links && node.outputs[0].links.length )
 			{
 				var input_link = node.graph.links[ node.inputs[0].link ];
 				var output_link = node.graph.links[ node.outputs[0].links[0] ];
@@ -9231,7 +9231,7 @@ LGraphNode.prototype.executeAction = function(action)
         dialog.style.top = top + "px";
 
 		//To avoid out of screen problems
-		if(event.layerY > (rect.height - 200)) 
+		if(event.layerY > (rect.height - 200))
             helper.style.maxHeight = (rect.height - event.layerY - 20) + "px";
 
 		/*
