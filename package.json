@@ -13,7 +13,6 @@
     "heroku-postbuild": "npm install",
     "build": "grunt build -force",
     "start": "nodemon utils/server.js",
-    "heroku-postbuild": "tsc && cd client && npm install --only=dev && npm install && npm run build",
     "react-start": "react-scripts --max_old_space_size=8192 start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prettier": "npx prettier --write src/**/*.* css/**/*.*",
