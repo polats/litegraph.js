@@ -401,7 +401,7 @@
       this.size = [100, 100];
       this.last_interval = 1000;
       this.triggered = false;
-      this.tooltip = "🦠 consume other 🦠"
+      this.tooltip = "consumes 🦠 or 🌞 to evolve"
 
       this.dying = false;
       this.dyingCountdown = 0;
@@ -486,7 +486,8 @@
       if( this.mouseOver )
       {
         ctx.fillStyle = "#AAA";
-        ctx.fillText( this.tooltip, 0, this.size[1] + 14 );
+        ctx.font = "14px Arial";
+        ctx.fillText( this.tooltip, 0, this.size[1] + 16 );
       }
     };
 

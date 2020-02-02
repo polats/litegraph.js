@@ -30,13 +30,14 @@
 
 			var controller, controllerGrip, tempMatrix = new THREE.Matrix4();
 			var INTERSECTED;
+			var graph;
 
+			loadGraph();
 			init();
 			animate();
-			loadGraph();
 
 			function loadGraph() {
-				var graph = new LiteGraph.LGraph();
+				graph = new LiteGraph.LGraph();
 
 				var data = localStorage.getItem( "graphdemo_save" );
 				if(data)
@@ -58,7 +59,6 @@
 				else {
 					graph.load( "examples/eco.json" );
 				}
-				console.log(graph)
 			}
 
 			function init() {
@@ -85,32 +85,119 @@
 				light.position.set( 1, 1, 1 ).normalize();
 				scene.add( light );
 
-				var geometry = new THREE.BoxBufferGeometry( 0.15, 0.15, 0.15 );
 
-				for ( var i = 0; i < 10; i ++ ) {
+				var nodes = graph._nodes;
+				console.log(nodes);
 
-					var object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+				for (var i = 0; i < nodes.length; i++)
+				{
+					var type = nodes[i].type;
+					var object;
 
-					object.position.x = Math.random() * 4 - 2;
-					object.position.y = Math.random() * 4;
-					object.position.z = Math.random() * 4 - 2;
+					switch (type) {
+						case "game3/Sunlight":
+							var radius = 0.08;
+							var geometry = new THREE.IcosahedronBufferGeometry( radius, 2 );
+							var object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: 0xffee00 } ) );
 
-					object.rotation.x = Math.random() * 2 * Math.PI;
-					object.rotation.y = Math.random() * 2 * Math.PI;
-					object.rotation.z = Math.random() * 2 * Math.PI;
+							object.position.x = -1.2; //Math.random() * 4 - 2;
+							object.position.y = 3.14;//Math.random() * 4;
+							object.position.z = -0.88;//Math.random() * 4 - 2;
 
-					object.scale.x = Math.random() + 0.5;
-					object.scale.y = Math.random() + 0.5;
-					object.scale.z = Math.random() + 0.5;
+							object.rotation.x = Math.random() * 2 * Math.PI;
+							object.rotation.y = Math.random() * 2 * Math.PI;
+							object.rotation.z = Math.random() * 2 * Math.PI;
 
-					object.userData.velocity = new THREE.Vector3();
-					object.userData.velocity.x = Math.random() * 0.01 - 0.005;
-					object.userData.velocity.y = Math.random() * 0.01 - 0.005;
-					object.userData.velocity.z = Math.random() * 0.01 - 0.005;
+							object.scale.x = 7.0;
+							object.scale.y = 7.0;
+							object.scale.z = 7.0;
 
-					room.add( object );
+							object.userData.velocity = new THREE.Vector3();
+							object.userData.velocity.x = 0; //Math.random() * 0.01 - 0.005;
+							object.userData.velocity.y = 0; //Math.random() * 0.01 - 0.005;
+							object.userData.velocity.z = 0; //Math.random() * 0.01 - 0.005;
 
+							console.log(object.position);
+
+							room.add( object );
+
+						break;
+						case "game3/Ocean":
+						var geometry = new THREE.BoxBufferGeometry( 0.15, 0.15, 0.15 );
+						var object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+						object.position.x = Math.random() * 4 - 2;
+						object.position.y = Math.random() * 4;
+						object.position.z = Math.random() * 4 - 2;
+
+						object.rotation.x = Math.random() * 2 * Math.PI;
+						object.rotation.y = Math.random() * 2 * Math.PI;
+						object.rotation.z = Math.random() * 2 * Math.PI;
+
+						object.scale.x = Math.random() + 0.5;
+						object.scale.y = Math.random() + 0.5;
+						object.scale.z = Math.random() + 0.5;
+
+						object.userData.velocity = new THREE.Vector3();
+						object.userData.velocity.x = Math.random() * 0.01 - 0.005;
+						object.userData.velocity.y = Math.random() * 0.01 - 0.005;
+						object.userData.velocity.z = Math.random() * 0.01 - 0.005;
+
+						room.add( object );
+
+						break;
+						case "game3/Cell":
+						case "game3/Kelp":
+						case "game3/Plankton":
+							var radius = 0.08;
+							var geometry = new THREE.IcosahedronBufferGeometry( radius, 2 );
+							var object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+
+							object.position.x = Math.random() * 4 - 2;
+							object.position.y = Math.random() * 4;
+							object.position.z = Math.random() * 4 - 2;
+
+							object.rotation.x = Math.random() * 2 * Math.PI;
+							object.rotation.y = Math.random() * 2 * Math.PI;
+							object.rotation.z = Math.random() * 2 * Math.PI;
+
+							object.scale.x = Math.random() + 0.5;
+							object.scale.y = Math.random() + 0.5;
+							object.scale.z = Math.random() + 0.5;
+
+							object.userData.velocity = new THREE.Vector3();
+							object.userData.velocity.x = Math.random() * 0.01 - 0.005;
+							object.userData.velocity.y = Math.random() * 0.01 - 0.005;
+							object.userData.velocity.z = Math.random() * 0.01 - 0.005;
+
+							room.add( object );
+						break;
+					}
 				}
+
+				// for ( var i = 0; i < 10; i ++ ) {
+				//
+				// 	var object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+				//
+				// 	object.position.x = Math.random() * 4 - 2;
+				// 	object.position.y = Math.random() * 4;
+				// 	object.position.z = Math.random() * 4 - 2;
+				//
+				// 	object.rotation.x = Math.random() * 2 * Math.PI;
+				// 	object.rotation.y = Math.random() * 2 * Math.PI;
+				// 	object.rotation.z = Math.random() * 2 * Math.PI;
+				//
+				// 	object.scale.x = Math.random() + 0.5;
+				// 	object.scale.y = Math.random() + 0.5;
+				// 	object.scale.z = Math.random() + 0.5;
+				//
+				// 	object.userData.velocity = new THREE.Vector3();
+				// 	object.userData.velocity.x = Math.random() * 0.01 - 0.005;
+				// 	object.userData.velocity.y = Math.random() * 0.01 - 0.005;
+				// 	object.userData.velocity.z = Math.random() * 0.01 - 0.005;
+				//
+				// 	room.add( object );
+				//
+				// }
 
 				raycaster = new THREE.Raycaster();
 
