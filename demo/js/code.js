@@ -13,7 +13,7 @@ window.onbeforeunload = function(){
 //create scene selector
 var elem = document.createElement("span");
 elem.className = "selector";
-elem.innerHTML = "🌲Ecosystem Simulator🌞"; // <button id='download'>Download</button>";
+elem.innerHTML = "🌲Eco Simulator🌞"; // <button id='download'>Download</button>";
 // <select><option>Empty</option></select> <button id='save'>Save</button><button id='load'>Load</button><button id='download'>Download</button>";
 editor.tools.appendChild(elem);
 
